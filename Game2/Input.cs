@@ -10,16 +10,17 @@ namespace Game2
     {
         public float Inputs()
         {
+            float displacment = 0f;
             KeyboardState stateKey = Keyboard.GetState();
             if (stateKey.IsKeyDown(Keys.A))
             {
-                return -1f;
+                displacment += - 1f;
             }
             if (stateKey.IsKeyDown(Keys.D))
             {
-                return 1f;
+                displacment += 1f;
             }
-            return 0f;
+            return displacment;
         }
     }
 }

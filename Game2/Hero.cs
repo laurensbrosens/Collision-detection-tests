@@ -7,9 +7,9 @@ namespace Game2
 {
     class Hero
     {
-        private Input PlayerInput = new Input();
         public Vector2 Position { get; set; }
         public int Health { get; set; }
+        public Physics PlayerPhysics = new Physics();
         
         public Rectangle CollisionRectangle { get; set; }
         public Hero(Vector2 spawnCoordinates) //Constructor met spawnpositie
