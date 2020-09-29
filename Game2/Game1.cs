@@ -46,6 +46,7 @@ namespace Game2
                 Exit();
 
             // TODO: Add your update logic here
+            Player1.PositionOld = Player1.CollisionRectangle.Center;
             Player1.Position += Player1.PlayerPhysics.Movement(gameTime); //Deze en volgende regel moeten nog ergens in een klasse komen
             Player1.CollisionRectangle = new Rectangle((int)Math.Round(Player1.Position.X), (int)Math.Round(Player1.Position.Y), 40, 40);
             Collision.Handler(Player1, Ground);

@@ -8,6 +8,7 @@ namespace Game2
     class Hero
     {
         public Vector2 Position { get; set; }
+        public Point PositionOld { get; set; } //Oude positie van collisionrectangle center != positie want die is linksboven
         public int Health { get; set; }
         public Physics PlayerPhysics = new Physics();
         
