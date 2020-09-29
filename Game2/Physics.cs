@@ -12,7 +12,7 @@ namespace Game2
         public float inputAcceleration { get; set; } = 100f; //Acceleratie door input
         //public float AccelerationX { get; set; } = 0f; //Horizontale acceleratie
         public float Gravity { get; set; } = 9.8f; //Acceleratie door zwaartekracht
-        public float jumpingSpeed { get; set; } = 10f; //Snelheid bij springen
+        public float jumpingSpeed { get; set; } = 6f; //Snelheid bij springen
         public float VelocityX { get; set; } = 0; //Snelheid horizontaal
         public float VelocityY { get; set; } = 0; //Snelheid verticaal
 
@@ -20,15 +20,24 @@ namespace Game2
         public float verticalInput = 0f; //De input van de speler verticaal
 
         private Input PlayerInput = new Input(); //Object initialiseren om input keyboard raad te plegen
-        public Vector2 Movement(GameTime gameTime)
+        public Vector2 Movement(GameTime gameTime, State state)
         {
             float deltaT = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector2 playerInput = PlayerInput.Inputs();
             horizontalInput = playerInput.X;
             verticalInput = playerInput.Y;
+            if (state.SlidingLeft && horizontalInput > 0)
+            {
+                horizontalInput = 0;
+            }
+            else if (state.SlidingRight && horizontalInput < 0)
+            {
+                horizontalInput = 0;
+            }
+
 
             VelocityX += inputAcceleration * horizontalInput - groundResistance * VelocityX; //Berekening van horizontale snelheid, snelheidx = acceleratie * input - grondweerstand * snelheidx
-            if (verticalInput != 0)
+            if (verticalInput != 0 && state.Grounded == true) //Als springen wordt ingeduwd en player staat op de grond kan hij springen
             {
                 VelocityY = -jumpingSpeed;
             }

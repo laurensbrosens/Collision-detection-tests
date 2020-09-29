@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.DirectWrite;
 using System;
 
 namespace Game2
@@ -9,19 +10,14 @@ namespace Game2
     {
         static public void Handler(Hero hero, Obstacle obstacle)
         {
-            if (Check(hero, obstacle))
-            {
-
-            }
+            Check(hero, obstacle);
         }
-        static private bool Check(Hero hero, Obstacle obstacle)
+        static private void Check(Hero hero, Obstacle obstacle)
         {
             if (hero.CollisionRectangle.Intersects(obstacle.CollisionRectangle))
             {
-                hero.Position += Fix(hero, obstacle);
-                return true;
+                hero.Compensation += Fix(hero, obstacle);
             }
-            return false;
         }
         static private Vector2 Fix(Hero hero, Obstacle obstacle)
         {
@@ -35,29 +31,39 @@ namespace Game2
             {
                 if (heroCenterY < obstacleTop)
                 {
-                    return new Vector2(0, obstacleTop - hero.CollisionRectangle.Bottom); //Naar boven
+                    int top = obstacleTop - hero.CollisionRectangle.Bottom;
+                    if (top > -1)
+                    {
+                        return new Vector2(0, 0); //Blijven stilstaan
+                    }
+                    return new Vector2(0, top); //Naar boven
                 }
                 else
                 {
-                    return new Vector2(0, obstacleTop - hero.CollisionRectangle.Bottom); //Naar beneden
+                    return new Vector2(0, obstacleBottom - hero.CollisionRectangle.Top); //Naar beneden
                 }
             }
             else if (obstacleTop < heroCenterY && heroCenterY < obstacleBottom)
             {
                 if (heroCenterX < obstacleLeft)
                 {
-                    return new Vector2(0, obstacleLeft - hero.CollisionRectangle.Right); //Naar links
+                    int left = obstacleLeft - hero.CollisionRectangle.Right;
+                    //if (left < 1)
+                    //{
+                        return new Vector2(left, 0); //Naar links
+                    //}
+                    //return new Vector2(0, 0); //Blijven stilstaan
                 }
                 else
                 {
-                    return new Vector2(0, obstacleRight - hero.CollisionRectangle.Left); //Naar rechts
+                    return new Vector2(obstacleRight - hero.CollisionRectangle.Left, 0); //Naar rechts
                 }
             }
             else if (obstacleTop > heroCenterY)
             {
                 if (heroCenterX < obstacleLeft)
                 {
-                    int left = hero.CollisionRectangle.Left - obstacleRight;
+                    int left = obstacleLeft - hero.CollisionRectangle.Right;
                     int top = obstacleTop - hero.CollisionRectangle.Bottom;
                     if (left >= top)
                     {
@@ -86,7 +92,7 @@ namespace Game2
             {
                 if (heroCenterX < obstacleLeft)
                 {
-                    int left = hero.CollisionRectangle.Left - obstacleRight;
+                    int left = obstacleLeft - hero.CollisionRectangle.Right;
                     int bottom = obstacleBottom - hero.CollisionRectangle.Top;
                     if (left >= bottom)
                     {

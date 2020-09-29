@@ -9,8 +9,10 @@ namespace Game2
     {
         public Vector2 Position { get; set; }
         public Point PositionOld { get; set; } //Oude positie van collisionrectangle center != positie want die is linksboven
+        public Vector2 Compensation { get; set; }
         public int Health { get; set; }
         public Physics PlayerPhysics = new Physics();
+        public State PlayerState = new State();
         
         public Rectangle CollisionRectangle { get; set; }
         public Hero(Vector2 spawnCoordinates) //Constructor met spawnpositie
