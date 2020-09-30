@@ -17,6 +17,7 @@ namespace Game2
             {
                 hero.PlayerState.SlidingLeft = true;
                 hero.PlayerPhysics.VelocityX = 0;
+                hero.Compensation += new Vector2(1f, 0); //Tegen trilling
             }
             else
             {
@@ -26,16 +27,18 @@ namespace Game2
             {
                 hero.PlayerState.SlidingRight = true;
                 hero.PlayerPhysics.VelocityX = 0;
+                hero.Compensation += new Vector2(-1f, 0); //Tegen trilling
             }
             else
             {
                 hero.PlayerState.SlidingRight = false;
             }
-            if (Compensation.Y < 0)
+            if (Compensation.Y < 0) //Naar boven
             {
                 hero.PlayerPhysics.VelocityY = 0;
                 hero.PlayerState.Grounded = true;
                 hero.PlayerPhysics.Gravity = 0;
+                hero.Compensation += new Vector2(0, 1f); //Tegen trilling
             }
             else
             {

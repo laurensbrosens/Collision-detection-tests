@@ -37,7 +37,7 @@ namespace Game2
             // TODO: use this.Content to load your game content here
             Player1 = new Hero();
             Ground = new Obstacle(-10,450,1000,20);
-            Box = new Obstacle(250, 40, 100, 300);
+            Box = new Obstacle(300, 40, 100, 300);
             myTexture = Content.Load<Texture2D>("ball");
             myTexture2 = Content.Load<Texture2D>("square2");
         }
@@ -59,8 +59,8 @@ namespace Game2
             Player1.CollisionRectangle = new Rectangle((int)Math.Round(Player1.Position.X), (int)Math.Round(Player1.Position.Y), 40, 40);
             Collision.Handler(Player1, Box); //Check collision op alle objecten
             Collision.Handler(Player1, Ground);
-            Player1.Position += Player1.Compensation; //Compenseer Movement() zodat je niet door objecten kan gaan
             Player1.PlayerState.StateCheck(Player1, Player1.Compensation);
+            Player1.Position += Player1.Compensation; //Compenseer Movement() zodat je niet door objecten kan gaan
             Player1.Compensation = new Vector2(0, 0);
             base.Update(gameTime);
         }

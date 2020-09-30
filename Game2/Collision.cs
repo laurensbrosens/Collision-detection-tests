@@ -29,14 +29,9 @@ namespace Game2
             int obstacleTop = obstacle.CollisionRectangle.Top;
             if (obstacleLeft < heroCenterX && heroCenterX < obstacleRight)
             {
-                if (heroCenterY < obstacleTop)
+                if (heroCenterY < obstacleBottom)
                 {
-                    int top = obstacleTop - hero.CollisionRectangle.Bottom;
-                    if (top > -1)
-                    {
-                        return new Vector2(0, 0); //Blijven stilstaan
-                    }
-                    return new Vector2(0, top); //Naar boven
+                    return new Vector2(0, obstacleTop - hero.CollisionRectangle.Bottom); //Naar boven
                 }
                 else
                 {
@@ -47,12 +42,8 @@ namespace Game2
             {
                 if (heroCenterX < obstacleLeft)
                 {
-                    int left = obstacleLeft - hero.CollisionRectangle.Right;
-                    //if (left < 1)
-                    //{
-                        return new Vector2(left, 0); //Naar links
-                    //}
-                    //return new Vector2(0, 0); //Blijven stilstaan
+                    return new Vector2(obstacleLeft - hero.CollisionRectangle.Right, 0); //Naar links
+
                 }
                 else
                 {
@@ -65,7 +56,7 @@ namespace Game2
                 {
                     int left = obstacleLeft - hero.CollisionRectangle.Right;
                     int top = obstacleTop - hero.CollisionRectangle.Bottom;
-                    if (left >= top)
+                    if (top > left)
                     {
                         return new Vector2(0, top); //Naar boven
                     }
@@ -78,7 +69,7 @@ namespace Game2
                 {
                     int right = obstacleRight - hero.CollisionRectangle.Left;
                     int top = obstacleTop - hero.CollisionRectangle.Bottom;
-                    if (right >= top)
+                    if (-top < right)
                     {
                         return new Vector2(0, top); //Naar boven
                     }
@@ -94,7 +85,7 @@ namespace Game2
                 {
                     int left = obstacleLeft - hero.CollisionRectangle.Right;
                     int bottom = obstacleBottom - hero.CollisionRectangle.Top;
-                    if (left >= bottom)
+                    if (-left > bottom)
                     {
                         return new Vector2(0, bottom); //Naar beneden
                     }
@@ -108,7 +99,7 @@ namespace Game2
                 {
                     int right = obstacleRight - hero.CollisionRectangle.Left;
                     int bottom = obstacleBottom - hero.CollisionRectangle.Top;
-                    if (right >= bottom)
+                    if (right > bottom)
                     {
                         return new Vector2(0, bottom); //Naar beneden
                     }
