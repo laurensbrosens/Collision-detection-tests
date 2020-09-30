@@ -18,12 +18,12 @@ namespace Game2
         public Hero(Vector2 spawnCoordinates) //Constructor met spawnpositie
         {
             Position = spawnCoordinates;
-            CollisionRectangle = new Rectangle((int)Math.Round(Position.X), (int)Math.Round(Position.Y), 40, 40);
+            CollisionRectangle = new Rectangle((int)Math.Round(Position.X), (int)Math.Round(Position.Y), 30, 40);
         }
         public Hero() //Constructor zonder argumenten met spawn linksboven
         {
             Position = new Vector2(10,10);
-            CollisionRectangle = new Rectangle((int)Math.Round(Position.X), (int)Math.Round(Position.Y), 40, 40);
+            CollisionRectangle = new Rectangle((int)Math.Round(Position.X), (int)Math.Round(Position.Y), 30, 40);
         }
         /*
         public void Movement()

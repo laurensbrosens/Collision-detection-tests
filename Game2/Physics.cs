@@ -12,7 +12,7 @@ namespace Game2
         public float inputAcceleration { get; set; } = 100f; //Acceleratie door input
         //public float AccelerationX { get; set; } = 0f; //Horizontale acceleratie
         public float Gravity { get; set; } = 9.8f; //Acceleratie door zwaartekracht
-        public float jumpingSpeed { get; set; } = 10f; //Snelheid bij springen
+        public float jumpingSpeed { get; set; } = 8f; //Snelheid bij springen
         public float VelocityX { get; set; } = 0; //Snelheid horizontaal
         public float VelocityY { get; set; } = 0; //Snelheid verticaal
 
