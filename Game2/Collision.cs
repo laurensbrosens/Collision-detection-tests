@@ -19,6 +19,14 @@ namespace Game2
                 hero.Compensation += Fix(hero, obstacle);
             }
         }
+        static public bool Hit(Hero hero, Obstacle obstacle) //Check of 2 dingen elkaar raken
+        {
+            if (hero.CollisionRectangle.Intersects(obstacle.CollisionRectangle))
+            {
+                return true;
+            }
+            return false;
+        }
         static private Vector2 Fix(Hero hero, Obstacle obstacle)
         {
             int heroCenterX = hero.PositionOld.X;

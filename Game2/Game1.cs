@@ -12,6 +12,7 @@ namespace Game2
         private Texture2D myTexture;
         private Texture2D myTexture2;
         private Texture2D myTexture3;
+        private Camera Camera1;
         private Hero Player1;
         private Obstacle Ground;
         private Obstacle Box;
@@ -35,6 +36,7 @@ namespace Game2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            Camera1 = new Camera(GraphicsDevice.Viewport);
             Player1 = new Hero();
             Ground = new Obstacle(-10,450,1000,20);
             Box = new Obstacle(300, 40, 100, 300);
@@ -62,6 +64,7 @@ namespace Game2
             Player1.PlayerState.StateCheck(Player1, Player1.Compensation);
             Player1.Position += Player1.Compensation; //Compenseer Movement() zodat je niet door objecten kan gaan
             Player1.Compensation = new Vector2(0, 0);
+            Camera1.UpdateCamera(GraphicsDevice.Viewport);
             base.Update(gameTime);
         }
 
